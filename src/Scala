@@ -1,0 +1,80 @@
+import java.util.Scanner
+
+case class Person(x: Int, y: Int, d: String)
+
+object Solution {
+
+  def solve(P: Int, Q: Int, D: Array[Person]) = {
+    val G : Array[Array[Int]] = Array.ofDim[Int](Q+1, Q+1)
+    D.foreach(p => {
+      p.d match {
+        case "N" => {
+          for (x <- 0 to Q; y <- p.y + 1 to Q) {
+            G(x)(y) += 1
+          }
+        }
+        case "S" => {
+          for (x <- 0 to Q; y <- 0 to p.y - 1) {
+            G(x)(y) += 1
+          }
+        }
+        case "E" => {
+          for (x <- p.x + 1 to Q; y <- 0 to Q) {
+            G(x)(y) += 1
+          }
+        }
+        case "W" => {
+          for (x <- 0 to p.x - 1; y <- 0 to Q) {
+            G(x)(y) += 1
+          }
+        }
+      }
+    })
+    // printGrid(G)
+    val coord = findMax(G)
+    s"${coord._1} ${coord._2}"
+  }
+
+  def printGrid(G: Array[Array[Int]]): Unit = {
+    for (col <- G) {
+      for (cell <- col) {
+        print(s"${cell} ")
+      }
+      println
+    }
+  }
+
+  def findMax(G: Array[Array[Int]]) = {
+    var max = 0
+    var coord = (0,0)
+    for ((col,x) <- G.zipWithIndex) {
+      for ((cell,y) <- col.zipWithIndex) {
+        if (G(x)(y) > max) {
+          max = G(x)(y)
+          coord = (x, y)
+        }
+      }
+    }
+    coord
+  }
+
+  def main(args: Array[String]): Unit = {
+    val sc = new Scanner(System.in)
+    try {
+      val T = sc.nextInt
+      for (tt <- 0 until T) {
+        val P = sc.nextInt
+        val Q = sc.nextInt
+        var D = new Array[Person](P)
+        for (i <- 0 until P) {
+          D(i) = Person(sc.nextInt, sc.nextInt, sc.next)
+        }
+        val sol = solve(P, Q, D)
+        println(s"Case #${tt+1}: ${sol}")
+      }
+    } finally {
+      sc.close
+    }
+  }
+
+}
