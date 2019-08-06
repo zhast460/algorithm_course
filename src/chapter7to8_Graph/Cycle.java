@@ -17,7 +17,8 @@ public class Cycle {
         }
     }
 
-    private void dfs(Graph G, int u, int v) {
+    private void dfs(Graph G, int u, int v)  // u is the caller vertex
+    {
         marked[v] = true;
         for (int w : G.adj(v)) {
             if (!marked[w]) {

@@ -5,13 +5,13 @@ import edu.princeton.cs.algs4.IndexMinPQ;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class DijkstraSP {
+public class DijkstraShortestPath {
 
     private double distTo[];
     private DirectedEdge edgeTo[];
     private IndexMinPQ<Double> pq;
 
-    public DijkstraSP(EdgeWeightedDigraph G, int s) {
+    public DijkstraShortestPath(EdgeWeightedDigraph G, int s) {
         distTo = new double[G.V()];
         edgeTo = new DirectedEdge[G.V()];
         pq = new IndexMinPQ(G.V());
@@ -71,7 +71,7 @@ public class DijkstraSP {
         G.addEdge(7,5,6.0);
         G.addEdge(7,2,7.0);
 
-        //DijkstraSP sp = new DijkstraSP(G, 0);
+        //DijkstraShortestPath sp = new DijkstraShortestPath(G, 0);
         //System.out.println(sp.distTo(6));
         //System.out.println(sp.pathTo(6));
 
@@ -81,7 +81,7 @@ public class DijkstraSP {
         negativeWeightG.addEdge(1, 2, 6);
         negativeWeightG.addEdge(2, 3, -9);
         negativeWeightG.addEdge(3, 4, 1);
-        DijkstraSP sp2 = new DijkstraSP(negativeWeightG, 0);
+        DijkstraShortestPath sp2 = new DijkstraShortestPath(negativeWeightG, 0);
         System.out.println(sp2.distTo(4));
     }
 }

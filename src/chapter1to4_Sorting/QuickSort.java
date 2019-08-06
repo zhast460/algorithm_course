@@ -5,10 +5,8 @@ public class QuickSort {
     static int partition(int[] a, int lo, int hi) {
         int i = lo, j = hi + 1;
         while (true) {
-            while (a[++i] < a[lo])
-                if (i == hi) break;
-            while (a[--j] > a[lo])
-                if (j == lo) break;
+            while (i < hi && a[++i] < a[lo]);
+            while (j > lo && a[--j] > a[lo]);
             if (j <= i) break;
             exch(a, i, j);
         }
