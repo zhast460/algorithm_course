@@ -1,56 +1,39 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Solution {
-    private class Node {
-        String id;
-        long start;
-        long end;
-        Node prev;
-        Node next;
-        public Node(String id, long start) {
-            this.id = id;
-            this.start = start;
-            end = -1;
+class Solution {
+    List<Integer> res = new ArrayList();
+    public List<Integer> sequentialDigits(int low, int high) {
+        String start = String.valueOf(low);
+        String end = String.valueOf(high);
+        int lo = start.length(), hi = end.length();
+        if (lo > 9) return res;
+        gen(lo, low, high, true);
+        for (int i = lo + 1; i < hi; i++) {
+            gen(i, low, high, false);
         }
+        if (lo < hi) gen(hi, low, high, true);
+        return res;
     }
-    Node head, tail;
-    Map<String, Node> map;
-    public Solution() {
-        head = new Node("", -1);
-        tail = new Node("", -1);
-        head.next = tail;
-        tail.prev = head;
-        map = new HashMap<>();
-    }
-    
-    public void started(String id, long time) {
-        Node curr = new Node(id, time);
-        map.put(id, curr);
-        add(curr);
-    }
-    
-    public void finished(String id, long time) {
-        Node curr = map.get(id);
-        if(curr != null && curr.end == -1) {
-            curr.end = time;
-            map.remove(id);
+
+    private void gen(int d, int low, int high, boolean check) {
+        if (d > 9) return;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= d; i++) {
+            sb.append(i);
         }
+        do {
+            int num = Integer.valueOf("" + sb.toString());
+            if (check && num >= low && num <= high) res.add(num);
+            int lastDigit = sb.charAt(sb.length() - 1) - '0' + 1;
+            if (lastDigit == 10) break;
+            sb.append(lastDigit);
+            sb.deleteCharAt(0);
+        } while (true);
     }
-    public void print() {
-        Node curr = head.next;
-        while(curr != tail) {
-            if(curr.end != -1) {
-                System.out.println(curr.id + " start at " + curr.start + " end at " + curr.end);
-            }
-            curr = curr.next;
-        }
-    }
-    private void add(Node curr) {
-        if(curr == null) return ;
-        curr.next = tail;
-        curr.prev = tail.prev;
-        tail.prev.next = curr;
-        tail.prev = curr;
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        System.out.println(sol.sequentialDigits(100, 300));
     }
 }

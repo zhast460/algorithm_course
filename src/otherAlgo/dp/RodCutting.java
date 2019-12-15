@@ -1,4 +1,4 @@
-package others.dp;
+package otherAlgo.dp;
 
 public class RodCutting {
 

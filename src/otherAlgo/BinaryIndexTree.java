@@ -1,12 +1,12 @@
-package others;
+package otherAlgo;
 
-// Or Binary Index Tree
-public class FenwickTree {
+// Or Fenwick Tree
+public class BinaryIndexTree {
 
     int[] tree;
     int[] a;
 
-    public FenwickTree(int[] a) {
+    public BinaryIndexTree(int[] a) {
         this.a = a;
         tree = new int[a.length + 1];
         for (int i = 0; i < a.length; i++)
@@ -43,7 +43,7 @@ public class FenwickTree {
 
     public static void main(String[] args) {
         int[] a = {2,5,-1,3,0,8,-4,5};
-        FenwickTree tree = new FenwickTree(a);
+        BinaryIndexTree tree = new BinaryIndexTree(a);
         System.out.println(tree.prefixSum(3));
         System.out.println(tree.prefixSum(6));
         System.out.println(tree.rangeSum(4, 7));

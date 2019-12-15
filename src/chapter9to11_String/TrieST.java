@@ -71,7 +71,7 @@ public class TrieST<Value> {
         return query.substring(0, length);
     }
 
-    private int search(Node x, String query, int d, int length) {
+    private int search(Node x, String query, int d, int length) { // d is the current checking index, length stores the answer
         if (x == null) return length;
         if (x.value != null) length = d;
         if (d == query.length()) return length;
