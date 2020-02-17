@@ -1,4 +1,4 @@
-package lintcode;
+package interview.lintcode;
 
 class LN183_Wood_Cut {
     public int woodCut(int[] L, int k) {

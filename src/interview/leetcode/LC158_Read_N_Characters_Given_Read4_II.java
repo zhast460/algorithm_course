@@ -1,10 +1,11 @@
-package leetcode;
+package interview.leetcode;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.util.Objects.hash;
 
-public class LC1066_Campus_Bikes_II {
+public class LC158_Read_N_Characters_Given_Read4_II {
     public int assignBike(int[][] workers, int[][] bikes){
         boolean[] bikeUsed = new boolean[bikes.length];
         Map<Integer, Integer> memo = new HashMap<>();
@@ -38,7 +39,7 @@ public class LC1066_Campus_Bikes_II {
     }
 
     public static void main(String[] args) {
-        LC1066_Campus_Bikes_II sol = new LC1066_Campus_Bikes_II();
+        LC158_Read_N_Characters_Given_Read4_II sol = new LC158_Read_N_Characters_Given_Read4_II();
         int[][] workers = new int[][]{{1,3},{12,4}};
         int[][] bikes = new int[][]{{9,4},{22,3}};
         int res = sol.assignBike(workers, bikes);

@@ -1,4 +1,4 @@
-package leetcode;
+package interview.leetcode;
 
 public class LC308_Range_Sum_Query_2D_Mutable {
     int[][] bitArray; // binary index tree array

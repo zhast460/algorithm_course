@@ -1,4 +1,4 @@
-package leetcode;
+package interview.leetcode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -89,8 +89,8 @@ class LC146_LRU_Cache {
 }
 
 /**
- * Your leetcode.LC146_LRU_Cache object will be instantiated and called as such:
- * leetcode.LC146_LRU_Cache obj = new leetcode.LC146_LRU_Cache(capacity);
+ * Your interview.leetcode.LC146_LRU_Cache object will be instantiated and called as such:
+ * interview.leetcode.LC146_LRU_Cache obj = new interview.leetcode.LC146_LRU_Cache(capacity);
  * int param_1 = obj.get(key);
  * obj.put(key,value);
  */

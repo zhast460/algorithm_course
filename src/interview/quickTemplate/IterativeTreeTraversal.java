@@ -1,4 +1,4 @@
-package leetcode.quickTemplate;
+package interview.quickTemplate;
 
 import java.util.ArrayList;
 import java.util.List;

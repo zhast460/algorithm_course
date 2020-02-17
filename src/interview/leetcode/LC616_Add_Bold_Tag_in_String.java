@@ -1,4 +1,4 @@
-package leetcode;
+package interview.leetcode;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package leetcode.quickTemplate;
+package interview.quickTemplate;
 
 class Trie {
     TrieNode root;
