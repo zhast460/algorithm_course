@@ -1,77 +1,57 @@
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 class Solution {
 
-    public int shortestPathLength(int[][] graph) {
-        int n = graph.length;
-        int fullMask = (1 << n) - 1;
-
-        Set<String> visited = new HashSet<>();
-        Queue<Node> que = new LinkedList<>();
-        for (int i = 0; i < n; i++) {
-            Node node = new Node(i, 1<<i);
-            que.offer(node);
-            visited.add(node.toString());
-        }
-
-        int level = 0;
-        while (!que.isEmpty()) {
-            int size = que.size();
-            for (int i = 0; i < size; i++) {
-                Node node = que.poll();
-                if (node.mask == fullMask) return level;
-                for (int next : graph[node.id]) {
-                    Node nextNode = new Node(next, node.mask | (1 << next));
-                    if (visited.contains(nextNode.toString())) continue;
-                    que.offer(nextNode);
-                    visited.add(nextNode.toString());
-                }
-            }
-            level++;
-        }
-
-        return level;
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
+        // LC863
+        if (root == null || K == 0) return Arrays.asList(target.val);
+        Map<Integer, Set<Integer>> graph = new HashMap();
+        graph.put(root.val, new HashSet<>());
+        dfs(root.left, root, graph);
+        dfs(root.right, root, graph);
+        return bfs(target, graph, K);
     }
 
-    class Node {
-        int id;
-        int mask;
+    private void dfs(TreeNode root, TreeNode caller, Map<Integer, Set<Integer>> graph) {
+        if (root == null) return;
+        graph.putIfAbsent(root.val, new HashSet());
+        graph.putIfAbsent(caller.val, new HashSet());
+        graph.get(root.val).add(caller.val);
+        graph.get(caller.val).add(root.val);
+        dfs(root.left, root, graph);
+        dfs(root.right, root, graph);
+    }
 
-        Node(int id, int mask){
-            this.id = id; this.mask = mask;
+    private List<Integer> bfs(TreeNode target, Map<Integer, Set<Integer>> graph, int K) {
+        List<Integer> res = new ArrayList();
+        Queue<Integer> queue = new LinkedList();
+        Set<Integer> visited = new HashSet<>();
+        queue.offer(target.val);
+        visited.add(target.val);
+        int level = 0;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int s = 0; s < size; s++) {
+                int curr = queue.poll();
+                for (int nei : graph.get(curr)) {
+                    if (visited.contains(nei)) continue;
+                    queue.offer(nei);
+                    visited.add(nei);
+                }
+            }
+            if (level == K - 1) {
+                res.addAll(queue);
+                break;
+            } else {
+                level++;
+            }
         }
-
-        public String toString() {
-            return id + " " + mask;
-        }
+        return res;
     }
 
     public static void main(String[] args) {
         Solution sol = new Solution();
-        int[][] graph = new int[][]{{1,2,3},{0},{0},{0}};
-        System.out.println(sol.shortestPathLength(graph));
-    }
-}
-
-/* Definition for a binary tree node. */
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
-    }
-
-    @Override
-    public String toString() {
-        return "TreeNode{" +
-                "val=" + val +
-                ", left=" + left +
-                ", right=" + right +
-                '}';
+        TreeNode root = TreeNode.deserialize("[3,5,1,6,2,0,8,null,null,7,4]");
+        System.out.println(sol.distanceK(root, new TreeNode(5),2));
     }
 }
