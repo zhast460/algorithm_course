@@ -1,11 +1,11 @@
 package chapter1to4_Sorting;
 
-public class    ThreeWayQuickSort {
+public class ThreeWayQuickSort {
 
     static void sort(int[] a, int lo, int hi) {
         if (hi <= lo) return;
         int v = a[lo], lt = lo, i = lo, gt = hi;
-        while (i <= gt) {
+        while (i <= gt) { // note that here it is "<=", cuz gt is the index to place the NEXT greater element, the number at gt now hasn't been verified yet
             int k = comp(a[i], v);
             if (k < 0) exch(a, i++, lt++);
             else if (k > 0) exch(a, i, gt--);
