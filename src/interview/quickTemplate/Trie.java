@@ -30,6 +30,26 @@ class Trie {
         return curr.isWord;
     }
 
+    /** Search with wildcard "." */
+    public boolean searchWithWildcard(String word) {
+        return searchWithWildcard(word, 0, root);
+    }
+
+    private boolean searchWithWildcard(String word, int idx, TrieNode root) {
+        if (idx == word.length()) return root.isWord;
+        char ch = word.charAt(idx);
+        if (ch == '.') {
+            for (TrieNode node : root.children) {
+                if (node != null && searchWithWildcard(word, idx + 1, node)) return true;
+            }
+            return false;
+        } else {
+            TrieNode next = root.children[ch - 'a'];
+            if (next == null) return false;
+            return searchWithWildcard(word, idx + 1, next);
+        }
+    }
+
     /** Returns if there is any word in the trie that starts with the given prefix. */
     public boolean startsWith(String prefix) {
         TrieNode curr = root;
@@ -48,6 +68,8 @@ class Trie {
         System.out.println(trie.search("abcd"));
         System.out.println(trie.startsWith("abcde"));
         System.out.println(trie.startsWith("abc"));
+        System.out.println(trie.searchWithWildcard(".b.d"));
+        System.out.println(trie.searchWithWildcard("..bd"));
     }
 }
 
