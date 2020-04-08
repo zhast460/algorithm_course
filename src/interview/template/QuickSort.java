@@ -1,4 +1,4 @@
-package interview.quickTemplate;
+package interview.template;
 
 import java.util.Arrays;
 

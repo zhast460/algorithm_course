@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class SolutionTemplate {
     public static void main(String[] args) {
         Scanner in = new Scanner((System.in));
-        int t = in.nextInt(); // Scanner has functions to read ints, longs, strings, chars, etc.
-        for (int i = 1; i <= t; ++i) {
+        int T = in.nextInt(); // Scanner has functions to read ints, longs, strings, chars, etc.
+        for (int ks = 1; ks <= T; ++ks) {
             int n = in.nextInt();
             int m = in.nextInt();
-            System.out.println("Case #" + i + ": " + (n + m) + " " + (n * m));
+            System.out.println("Case #" + ks + ": " + (n + m) + " " + (n * m));
         }
     }
 }
