@@ -13,6 +13,8 @@ import java.util.Queue;
 // if the job has a job started earlier than itself not yet finished, do not print the log,
 // wait till all its preceding job finish, then print it. print jobs in ascending startTime.
 public class LoggerClass {
+    // we are assuming start() will be called with ascending startTime.
+    // if this is not the case, use TreeMap or PriorityQueue instead of Queue.
     Queue<Integer> queue;
     Map<Integer, Integer[]> map;
 
