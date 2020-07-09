@@ -42,6 +42,8 @@ class TreeNode {
                 queue.offer(curr.left);
             }
             i++;
+            if (i == a.length) break;
+
             if (!a[i].equals("null")) {
                 curr.right = new TreeNode(Integer.valueOf(a[i]));
                 queue.offer(curr.right);
@@ -62,6 +64,7 @@ class TreeNode {
     public static void main(String[] args) {
         Solution sol = new Solution();
         String data = "[3,5,1,6,2,0,8,null,null,7,4]";
-        System.out.println(TreeNode.deserialize(data).left.right.right.val);
+        TreeNode tn = TreeNode.deserialize(data);
+        System.out.println(tn.left.right.right.val);
     }
 }
