@@ -19,8 +19,6 @@ public class SolutionTemplateForFB {
         int T = in.nextInt();
         for (int ks = 1; ks <= T; ++ks) {
             int n = in.nextInt();
-            int[] a = new int[n];
-            for (int i = 0; i < n; i++) a[i] = in.nextInt();
             String ans = "Case #" + ks + ": " + sol.solve(n);
             System.out.println(ans);
             pw.println(ans);
