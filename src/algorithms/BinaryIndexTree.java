@@ -1,4 +1,4 @@
-package otherAlgo;
+package algorithms;
 
 // Or Fenwick Tree
 public class BinaryIndexTree {

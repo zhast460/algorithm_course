@@ -8,6 +8,9 @@ import java.util.TreeMap;
 // BIG LEARNING - java TreeSet/TreeMap couldn't store duplicate, even with "key -> another key" mapping as comparator,
 // whether "another key" will be compared and "another key" could have duplicates.
 
+// 1. TreeMap solution. Below solution is written by myself. use TreeMap to track min cost
+// 2. Mono queue solution. have read official solution, the optimal solution use mono increasing queue to store cost, achieving O(1) insertion, deletion and getMin()
+
 public class FB_HackerCup_2020_Qualification_D1 {
 
     public long solve(int n, int m, int[] a) {

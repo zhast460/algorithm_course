@@ -1,4 +1,4 @@
-package otherAlgo.greedy;
+package algorithms.greedy;
 
 import java.util.ArrayList;
 import java.util.List;

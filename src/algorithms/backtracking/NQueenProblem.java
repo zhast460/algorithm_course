@@ -1,4 +1,4 @@
-package otherAlgo.backtracking;
+package algorithms.backtracking;
 
 public class NQueenProblem {
 
